@@ -1,11 +1,12 @@
 # JDAUtils
-##Simple API that makes adding commands in JDA alot easier
+
+## Simple API that makes adding commands in JDA alot easier
 
 # Download
 
-###Note: Replace `%VERSION%` with your desired version.
+### Note: Replace `%VERSION%` with your desired version.
 
-##Gradle
+## Gradle
 ```gradle
 repositories {
     maven { url 'https://jitpack.io' }
@@ -17,7 +18,7 @@ dependencies {
 }
 ```
 
-##Maven
+## Maven
 ```xml
 <repository>
     <id>jitpack.io</id>
