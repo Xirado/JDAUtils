@@ -1,4 +1,4 @@
-package beanapi.commands;
+package at.xirado.jdautils.commands;
 
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import net.dv8tion.jda.api.events.GenericEvent;

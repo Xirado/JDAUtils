@@ -1,4 +1,4 @@
-package beanapi.commands;
+package at.xirado.jdautils.commands;
 
 public enum CommandFlag
 {

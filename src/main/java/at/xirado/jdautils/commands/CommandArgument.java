@@ -1,4 +1,4 @@
-package beanapi.commands;
+package at.xirado.jdautils.commands;
 
 import net.dv8tion.jda.internal.utils.Checks;
 import net.dv8tion.jda.internal.utils.JDALogger;
@@ -40,6 +40,7 @@ public class CommandArgument
 
 	protected CommandArgument(String argumentString, long guildID, String prefix)
 	{
+		System.out.println(argumentString);
 		Checks.notEmpty(argumentString, "arguments");
 		Checks.isSnowflake(String.valueOf(guildID), "guildID");
 		Checks.notEmpty(prefix, "prefix");
