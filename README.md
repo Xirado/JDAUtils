@@ -1,6 +1,6 @@
 # JDAUtils
 
-## Simple API that makes adding commands in JDA alot easier
+### Simple API that makes adding commands in JDA alot easier
 
 # Download
 
