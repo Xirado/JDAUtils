@@ -1,4 +1,4 @@
-package at.xirado.jdautils.commands;
+package at.xirado.jdautils.command;
 
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 import net.dv8tion.jda.internal.utils.Checks;

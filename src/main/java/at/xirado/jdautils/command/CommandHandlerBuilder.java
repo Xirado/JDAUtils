@@ -1,15 +1,16 @@
-package at.xirado.jdautils.commands;
+package at.xirado.jdautils.command;
 
 import net.dv8tion.jda.internal.utils.Checks;
 
-import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.concurrent.ExecutorService;
 
 public class CommandHandlerBuilder
 {
     private final String prefix;
-    private final ArrayList<Command> registeredCommands = new ArrayList<>();
+    private final Set<Command> addedCommands = new HashSet<>();
     private Long ownerID = null;
     private ExecutorService executorService = null;
 
@@ -27,7 +28,7 @@ public class CommandHandlerBuilder
     public CommandHandlerBuilder registerCommands(Command... commands)
     {
         Checks.notNull(commands, "Commands");
-        registeredCommands.addAll(Arrays.asList(commands));
+        addedCommands.addAll(Arrays.asList(commands));
         return this;
     }
 
@@ -62,6 +63,6 @@ public class CommandHandlerBuilder
      */
     public CommandHandler build()
     {
-        return new CommandHandler(executorService, prefix, registeredCommands, ownerID);
+        return new CommandHandler(executorService, prefix, addedCommands, ownerID);
     }
 }

@@ -1,4 +1,4 @@
-package at.xirado.jdautils.commands;
+package at.xirado.jdautils.command;
 
 public enum CommandFlag
 {

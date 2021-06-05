@@ -1,4 +1,4 @@
-package at.xirado.jdautils.commands;
+package at.xirado.jdautils.command;
 
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import net.dv8tion.jda.api.events.GenericEvent;
@@ -15,8 +15,6 @@ import java.util.stream.Collectors;
 
 public class CommandHandler implements EventListener
 {
-
-
     private static final Logger LOGGER = JDALogger.getLog(CommandHandler.class);
 
     private final ConcurrentMap<String, Command> registeredCommands = new ConcurrentSkipListMap<>(String.CASE_INSENSITIVE_ORDER);
@@ -56,7 +54,6 @@ public class CommandHandler implements EventListener
                 registeredCommands.put(alias, command);
             }
         }
-        return;
     }
 
     /**
