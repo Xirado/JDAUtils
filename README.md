@@ -4,7 +4,7 @@
 
 # Download
 
-### Note: Replace `%VERSION%` with your desired version.
+#### Note: Replace `%VERSION%` with your desired version (or the hash of the commit you want).
 
 ## Gradle
 ```gradle
