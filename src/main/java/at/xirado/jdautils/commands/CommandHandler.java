@@ -32,10 +32,11 @@ public class CommandHandler implements EventListener
         this.prefix = prefix;
     }
 
-    public void setOwnerID(Long ownerID)
+    public CommandHandler setOwnerID(Long ownerID)
     {
         Checks.isSnowflake(String.valueOf(ownerID), "OwnerID");
         this.ownerID = ownerID;
+        return this;
     }
 
     public Long getOwnerID()
@@ -145,7 +146,4 @@ public class CommandHandler implements EventListener
         };
         executorService.submit(r);
     }
-
-
-
 }
