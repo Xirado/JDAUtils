@@ -2,7 +2,9 @@
 ##Simple API that makes adding commands in JDA alot easier
 
 # Download
+
 ###Note: Replace `%VERSION%` with your desired version.
+
 ##Gradle
 ```gradle
 repositories {
@@ -14,6 +16,7 @@ dependencies {
     implementation 'com.github.Xirado:JDAUtils:%VERSION%'
 }
 ```
+
 ##Maven
 ```xml
 <repository>
