@@ -12,18 +12,30 @@ public class CommandArgument
 {
 
 	private static final Logger LOGGER = JDALogger.getLog(CommandArgument.class);
-	private String Command;
-	private String prefix;
-	private String[] args;
+	private final String command;
+	private final String prefix;
+	private final String[] args;
 	public String getCommandName()
 	{
-		return Command;
+		return command;
 	}
 	public String[] toStringArray()
 	{
 		return args;
 	}
 
+	protected CommandArgument(String argumentString, long guildID, String prefix)
+	{
+		Checks.notEmpty(argumentString, "arguments");
+		Checks.isSnowflake(String.valueOf(guildID), "guildID");
+		Checks.notEmpty(prefix, "prefix");
+		this.prefix = prefix;
+		String[] argumentArray = argumentString.split(" +");
+		this.command = argumentArray[0].substring(prefix.length());
+		List<String> arguments = new ArrayList<String>(Arrays.asList(argumentArray).subList(1, argumentArray.length));
+		args = new String[arguments.size()];
+		arguments.toArray(args);
+	}
 
 	public String toString(int startIndex)
 	{
@@ -38,18 +50,9 @@ public class CommandArgument
 		return sb.toString().trim();
 	}
 
-	protected CommandArgument(String argumentString, long guildID, String prefix)
+	@Override
+	public String toString()
 	{
-		System.out.println(argumentString);
-		Checks.notEmpty(argumentString, "arguments");
-		Checks.isSnowflake(String.valueOf(guildID), "guildID");
-		Checks.notEmpty(prefix, "prefix");
-		this.prefix = prefix;
-		String[] argumentArray = argumentString.split(" +");
-		this.Command = argumentArray[0].substring(prefix.length());
-		List<String> arguments = new ArrayList<String>(Arrays.asList(argumentArray).subList(1, argumentArray.length));
-		args = new String[arguments.size()];
-		arguments.toArray(args);
-		
+		return toString(0);
 	}
 }

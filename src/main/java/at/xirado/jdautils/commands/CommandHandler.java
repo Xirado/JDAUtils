@@ -112,6 +112,8 @@ public class CommandHandler implements EventListener
     {
         if(!(event instanceof GuildMessageReceivedEvent)) return;
         GuildMessageReceivedEvent guildEvent = (GuildMessageReceivedEvent) event;
+        if(guildEvent.isWebhookMessage() || guildEvent.getAuthor().isBot()) return;
+        if(!guildEvent.getMessage().getContentRaw().startsWith(prefix)) return;
         Runnable r = () ->
         {
             try
