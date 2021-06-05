@@ -4,16 +4,13 @@ import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import net.dv8tion.jda.api.events.GenericEvent;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.EventListener;
-import net.dv8tion.jda.internal.utils.Checks;
 import net.dv8tion.jda.internal.utils.JDALogger;
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 
+import java.util.Collection;
 import java.util.List;
-import java.util.concurrent.ConcurrentMap;
-import java.util.concurrent.ConcurrentSkipListMap;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.*;
 import java.util.stream.Collectors;
 
 public class CommandHandler implements EventListener
@@ -23,20 +20,19 @@ public class CommandHandler implements EventListener
     private static final Logger LOGGER = JDALogger.getLog(CommandHandler.class);
 
     private final ConcurrentMap<String, Command> registeredCommands = new ConcurrentSkipListMap<>(String.CASE_INSENSITIVE_ORDER);
-    private final ScheduledExecutorService executorService = Executors.newScheduledThreadPool(Runtime.getRuntime().availableProcessors(), new ThreadFactoryBuilder().setNameFormat("Command Worker %d").build());
+    private final ExecutorService executorService;
     private final String prefix;
-    private Long ownerID;
+    private final Long ownerID;
 
-    public CommandHandler(String prefix)
+    protected CommandHandler(ExecutorService executorService, String prefix, Collection<Command> commands, Long ownerID)
     {
+        this.executorService = executorService != null ? executorService : Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors(), new ThreadFactoryBuilder().setNameFormat("Command Thread %d").build());
         this.prefix = prefix;
-    }
-
-    public CommandHandler setOwnerID(Long ownerID)
-    {
-        Checks.isSnowflake(String.valueOf(ownerID), "OwnerID");
         this.ownerID = ownerID;
-        return this;
+        for(Command command : commands)
+        {
+            registerCommand(command);
+        }
     }
 
     public Long getOwnerID()
@@ -44,13 +40,13 @@ public class CommandHandler implements EventListener
         return ownerID;
     }
 
-    public CommandHandler registerCommand(Command command)
+    private void registerCommand(Command command)
     {
         String name = command.getName();
         if(registeredCommands.containsKey(name))
         {
             LOGGER.error("Command \""+name+"\" could not be registered because a command (or alias) with this name already exists!");
-            return this;
+            return;
         }
         registeredCommands.put(name, command);
         if(command.getAliases() != null && command.getAliases().size() >= 1)
@@ -65,7 +61,7 @@ public class CommandHandler implements EventListener
                 registeredCommands.put(alias, command);
             }
         }
-        return this;
+        return;
     }
 
     /**
@@ -105,8 +101,6 @@ public class CommandHandler implements EventListener
                 .filter(x -> x.hasCommandFlag(CommandFlag.PRIVATE_GUILD_COMMAND) && x.getAllowedGuilds().contains(guildID))
                 .collect(Collectors.toUnmodifiableList());
     }
-
-
 
     @Override
     public void onEvent(@NotNull GenericEvent event)
