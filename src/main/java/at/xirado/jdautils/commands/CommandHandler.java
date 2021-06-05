@@ -1,4 +1,4 @@
-package beanapi.commands;
+package at.xirado.jdautils.commands;
 
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import net.dv8tion.jda.api.events.GenericEvent;
@@ -112,6 +112,8 @@ public class CommandHandler implements EventListener
     {
         if(!(event instanceof GuildMessageReceivedEvent)) return;
         GuildMessageReceivedEvent guildEvent = (GuildMessageReceivedEvent) event;
+        if(guildEvent.isWebhookMessage() || guildEvent.getAuthor().isBot()) return;
+        if(!guildEvent.getMessage().getContentRaw().startsWith(prefix)) return;
         Runnable r = () ->
         {
             try

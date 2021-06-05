@@ -1,4 +1,4 @@
-package beanapi.commands;
+package at.xirado.jdautils.commands;
 
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 import net.dv8tion.jda.internal.utils.Checks;
