@@ -3,6 +3,7 @@
 ### Simple API that makes adding commands in JDA alot easier
 
 # Download
+[![GitHub release](https://img.shields.io/github/release/Xirado/JDAUtils.svg)](https://GitHub.com/Xirado/JDAUtils/releases/)
 
 #### Note: Replace `%VERSION%` with your desired version (or the hash of the commit you want).
 
