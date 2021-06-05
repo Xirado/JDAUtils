@@ -35,7 +35,7 @@ CommandHandler commandHandler = new CommandHandlerBuilder(";;")
     .build();
 ```
 
-Then, you can tell JDA to register the `CommandHandler` using `JDA.addEventListener()` or `JDABuilder.addEventListener()`, passing the object.
+Then, you can tell JDA to register the `CommandHandler` using `JDA.addEventListener()` or `JDABuilder.addEventListeners()`, passing the object.
 
 * Note: Every command runs on an ExecutorService by default, you can choose your own by using `CommandHandlerBuilder.setExecutor()`. This means that every command runs asynchronously
 
