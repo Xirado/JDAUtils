@@ -19,6 +19,11 @@ public class CommandHandlerBuilder
         this.prefix = prefix;
     }
 
+    /**
+     * Used to register commands
+     * @param commands Command(s) to register
+     * @return current object for chaining convenience
+     */
     public CommandHandlerBuilder registerCommands(Command... commands)
     {
         Checks.notNull(commands, "Commands");
@@ -26,6 +31,12 @@ public class CommandHandlerBuilder
         return this;
     }
 
+    /**
+     * Sets the Owner-ID.
+     * Only this user can execute commands flagged with {@link CommandFlag#DEVELOPER_ONLY}.
+     * @param ownerID
+     * @return
+     */
     public CommandHandlerBuilder setOwnerID(Long ownerID)
     {
         Checks.notNull(ownerID, "OwnerID");
@@ -33,6 +44,11 @@ public class CommandHandlerBuilder
         return this;
     }
 
+    /**
+     * Sets the ExecutorService where all commands run on
+     * @param executorService ExecutorService
+     * @return current object for chaining convenience
+     */
     public CommandHandlerBuilder setExecutorService(ExecutorService executorService)
     {
         Checks.notNull(executorService, "Executor");
@@ -40,6 +56,10 @@ public class CommandHandlerBuilder
         return this;
     }
 
+    /**
+     * Builds the CommandHandler
+     * @return the CommandHandler
+     */
     public CommandHandler build()
     {
         return new CommandHandler(executorService, prefix, registeredCommands, ownerID);

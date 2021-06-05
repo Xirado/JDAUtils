@@ -5,7 +5,7 @@ public class EchoCommand extends Command
 {
     public EchoCommand()
     {
-        super("echo", "let the bot say something", "echo [Text]");
+        super("echo", "let the bot say something", "echo [Text]"); // title, description, usage
         setAliases("parrot", "speak", "say");
     }
 

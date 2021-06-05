@@ -14,14 +14,6 @@ public class CommandArgument
 	private static final Logger LOGGER = JDALogger.getLog(CommandArgument.class);
 	private final String command;
 	private final String[] args;
-	public String getCommandName()
-	{
-		return command;
-	}
-	public String[] toStringArray()
-	{
-		return args;
-	}
 
 	protected CommandArgument(String argumentString, long guildID, String prefix)
 	{
@@ -35,9 +27,31 @@ public class CommandArgument
 		arguments.toArray(args);
 	}
 
+	/**
+	 * Returns the name of the invoked command
+	 * @return the name of the invoked command
+	 */
+	public String getCommandName()
+	{
+		return command;
+	}
+
+	/**
+	 * Returns a String array containing all arguments of the invoked command
+	 * @return a String array containing all arguments of the invoked command
+	 */
+	public String[] toStringArray()
+	{
+		return args;
+	}
+
+	/**
+	 * Returns a String containing all arguments of the invoked command
+	 * @param startIndex The index where to start from
+	 * @return a String containing all arguments of the invoked command
+	 */
 	public String toString(int startIndex)
 	{
-		String[] args = this.args;
 		if(args == null)
 			return null;
 		StringBuilder sb = new StringBuilder();
@@ -48,6 +62,10 @@ public class CommandArgument
 		return sb.toString().trim();
 	}
 
+	/**
+	 * Returns a String containing all arguments of the invoked command
+	 * @return a String containing all arguments of the invoked command
+	 */
 	@Override
 	public String toString()
 	{

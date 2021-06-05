@@ -35,11 +35,6 @@ public class CommandHandler implements EventListener
         }
     }
 
-    public Long getOwnerID()
-    {
-        return ownerID;
-    }
-
     private void registerCommand(Command command)
     {
         String name = command.getName();
@@ -62,6 +57,15 @@ public class CommandHandler implements EventListener
             }
         }
         return;
+    }
+
+    /**
+     * Returns the User-ID of the owner
+     * @return Possibly null-valued User-ID of the owner
+     */
+    public Long getOwnerID()
+    {
+        return ownerID;
     }
 
     /**
