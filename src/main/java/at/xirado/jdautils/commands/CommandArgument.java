@@ -13,7 +13,6 @@ public class CommandArgument
 
 	private static final Logger LOGGER = JDALogger.getLog(CommandArgument.class);
 	private final String command;
-	private final String prefix;
 	private final String[] args;
 	public String getCommandName()
 	{
@@ -29,8 +28,7 @@ public class CommandArgument
 		Checks.notEmpty(argumentString, "arguments");
 		Checks.isSnowflake(String.valueOf(guildID), "guildID");
 		Checks.notEmpty(prefix, "prefix");
-		this.prefix = prefix;
-		String[] argumentArray = argumentString.split(" +");
+		String[] argumentArray = argumentString.split("\\s+");
 		this.command = argumentArray[0].substring(prefix.length());
 		List<String> arguments = new ArrayList<String>(Arrays.asList(argumentArray).subList(1, argumentArray.length));
 		args = new String[arguments.size()];
