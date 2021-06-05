@@ -131,10 +131,7 @@ public class CommandHandler implements EventListener
                     if(guildEvent.getMember().getIdLong() != ownerID) return;
                 }
 
-                if(command.hasCommandFlag(CommandFlag.DISABLED))
-                {
-                    if(guildEvent.getMember().getIdLong() != ownerID) return;
-                }
+                if(command.hasCommandFlag(CommandFlag.DISABLED)) return;
 
                 command.executeCommand(guildEvent, arguments);
             }catch(Exception ex)
