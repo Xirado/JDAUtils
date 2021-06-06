@@ -72,7 +72,7 @@ SlashCommandHandler slashCommandHandler = new SlashCommandHandlerBuilder()
 ```
 Then, you can tell JDA to register the `SlashCommandHandler` using `JDA.addEventListener()` or `JDABuilder.addEventListeners()`, passing the object.
 ### Note: Global commands take up to an hour to update. For testing, you can make a slash-command a guild-command using `setGlobal(false)`, then you can whitelist your guild with `addAllowedGuilds()`. Since guild-commands update instantly, you don't have to wait up to an hour. Keep in mind that Discord only allows 200 Guild command updates per day per guild.
-* Using the method `setDebugGuildID(long guildID)` on the SlashCommandHandlerBuiler object, you can automatically make every global command a guild command. With this, you don't have to do the step above.
+* Using the method `setDebugGuildID(long guildID)` on the `SlashCommandHandlerBuilder` object, you can automatically make every global command a guild command. With this, you don't have to do the step above.
 # Download
 [![GitHub release](https://img.shields.io/github/release/Xirado/JDAUtils.svg)](https://GitHub.com/Xirado/JDAUtils/releases/)
 
