@@ -7,10 +7,6 @@
 ### Slash commands are the modern way of creating commands on Discord.
 ### To create a slash command, create a new Class that extends `SlashCommand`.
 ```java
-import at.xirado.jdautils.slashcommand.SlashCommand;
-import net.dv8tion.jda.api.events.interaction.SlashCommandEvent;
-import net.dv8tion.jda.api.interactions.commands.OptionType;
-
 public class EchoCommand extends SlashCommand
 {
     public EchoCommand()
